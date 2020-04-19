@@ -5,17 +5,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
-import java.util.UUID;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class Message {
-	public UUID id;
-	public Date date;
-	public String from;
-	public String to;
-	public String text;
+	private Date date = new Date();
+	private String from;
+	private String to;
+	private String text;
 
 	public Message(String from, String text) {
 		this.from = from;
@@ -57,12 +54,36 @@ public class Message {
 			os.close();
 		}
 	}
+	public Date getDate() {
+		return date;
+	}
 
-	public Message(Date date, String from, String to, String text) {
-		this.id = UUID.randomUUID();
+	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
 		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
 		this.to = to;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
 		this.text = text;
 	}
+
 }

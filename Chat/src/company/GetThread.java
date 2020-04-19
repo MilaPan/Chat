@@ -13,17 +13,21 @@ import java.nio.charset.StandardCharsets;
 public class GetThread implements Runnable {
     private final Gson gson;
     private int n;
+    private static String login;
+    private static String password;
 
-    public GetThread() {
+    public GetThread(String login, String password) {
 
         gson = new GsonBuilder().create();
+        this.login = login;
+        this.password = password;
     }
 
     @Override
     public void run() {
         try {
             while ( ! Thread.interrupted()) {
-                URL url = new URL(Utils.getURL() + "/get?from=" + n);
+                URL url = new URL(Utils.getURL() + "/get?from=" + n + "&login=" + login + "&password=" + password);
                 HttpURLConnection http = (HttpURLConnection) url.openConnection();
 
                 InputStream is = http.getInputStream();
